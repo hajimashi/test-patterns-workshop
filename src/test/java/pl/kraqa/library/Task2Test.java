@@ -18,7 +18,12 @@ class Task2Test {
     @BeforeEach
     public void setup() {
         library = new Library();
-        krzyzacy = new Book(new Author("Henryk", "Sienkiewicz"), "Krzyżacy", 1897, "978-83-774-0824-7");
+        krzyzacy = new BookBuilder()
+                .author(new Author("Henryk", "Sienkiewicz"))
+                .title("Krzyżacy")
+                .releaseYear(1897)
+                .isbn("978-83-774-0824-7")
+                .build();
     }
 
     @Test
