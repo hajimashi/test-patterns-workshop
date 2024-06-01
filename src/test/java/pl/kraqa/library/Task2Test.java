@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Task 2:
  * - Take a look at the setup part of a solution for task1. What can be changed here to make it more readable?
  */
-class Task1Test {
+class Task2Test {
     Book krzyzacy;
     Library library;
 
