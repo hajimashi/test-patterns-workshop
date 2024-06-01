@@ -13,15 +13,17 @@ import static org.junit.jupiter.api.Assertions.*;
  * - Create test checking that book is not available until a copy of a book is added
  */
 class Task1Test {
-    Author heniek;
     Book krzyzacy;
     Library library;
 
     @BeforeEach
     public void setup() {
-        heniek = new Author("Henryk", "Sienkiewicz");
-        krzyzacy = new Book(heniek, "Krzyżacy", 1897, "978-83-774-0824-7");
         library = new Library();
+        krzyzacy = new BookBuilder().author(new Author("Henryk", "Sienkiewicz"))
+                .title("Krzyżacy")
+                .releaseYear(1897)
+                .isbn("978-83-774-0824-7")
+                .build();
     }
 
     @Test
