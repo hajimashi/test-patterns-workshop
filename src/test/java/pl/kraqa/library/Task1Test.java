@@ -8,9 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
- * Task 1:
- * - Create test checking that added book may be found in the library
- * - Create test checking that book is not available until a copy of a book is added
+ * Task 2:
+ * - Take a look at the setup part of a solution for task1. What can be changed here to make it more readable?
  */
 class Task1Test {
     Book krzyzacy;
@@ -19,11 +18,7 @@ class Task1Test {
     @BeforeEach
     public void setup() {
         library = new Library();
-        krzyzacy = new BookBuilder().author(new Author("Henryk", "Sienkiewicz"))
-                .title("Krzyżacy")
-                .releaseYear(1897)
-                .isbn("978-83-774-0824-7")
-                .build();
+        krzyzacy = new Book(new Author("Henryk", "Sienkiewicz"), "Krzyżacy", 1897, "978-83-774-0824-7");
     }
 
     @Test

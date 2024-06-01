@@ -9,12 +9,6 @@ public class Book {
 
     private final String ISBN;
 
-    private String subtitle;
-
-    private int tome;
-
-    private String publishingHouse;
-
 
     public Book(Author author, String title, int releaseYear, String ISBN) {
         this.author = author;

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * - Create test checking that added book may be found in the library
  * - Create test checking that book is not available until a copy of a book is added
  */
-class Task2Test {
+class TaskXTest {
 
     @Test
     public void addedBookMayBeFoundInTheLibrary() {

@@ -26,6 +26,11 @@ public class BookBuilder {
 
     public BookBuilder isbn(String isbn) {
         this.ISBN = isbn;
+        Book krzyzacy = new BookBuilder().author(new Author("Henryk", "Sienkiewicz"))
+                .title("Krzyżacy")
+                .releaseYear(1897)
+                .isbn("978-83-774-0824-7")
+                .build();
         return this;
     }
 
