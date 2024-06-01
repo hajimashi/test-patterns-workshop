@@ -13,6 +13,7 @@
 5. Try to refactor the code to make it more readable
 
 ## Task 2*
-1. Let's imagine our library decided to follow current trends and wants to let people borrow books online
-2. Take a look at `pl.kraqa.library.Order` class
-3. Can you implement pattern learned in the task 2 in this class?
+1. Checkout `task2` branch (`git checkout task2`)
+2. Let's imagine our library decided to follow current trends and wants to let people borrow books online
+3. Take a look at `pl.kraqa.library.Order` class
+4. Can you implement pattern learned in the task 2 in this class?
