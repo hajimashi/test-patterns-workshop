@@ -17,3 +17,21 @@
 2. Let's imagine our library decided to follow current trends and wants to let people borrow books online
 3. Take a look at `pl.kraqa.library.Order` class
 4. Can you implement pattern learned in the task 2 in this class?
+
+## Task 3
+1. Checkout `task3` branch (`git checkout task3`)
+2. Implement a test verifying that contact page at [kraqa.pl](https://kraqa.pl) is working correctly
+3. Create a test that ensures link (nasze inicjatywy -> testwarez) at the [sjsi](https://sjsi.org) redirects to testwarez page as expected
+4. Make sure you have chromedriver installed on your machine
+5. Use Selenium in both tests.
+6. As a help you may refer `pl.kraqa.web.KraQATest` sample test and use google
+
+## Task 4a
+
+1. Checkout `task4` branch (`git checkout task4`)
+2. Think of all test cases that you would create for class `pl.kraqa.library.Order`
+3. Concentrate on `calculatePrice()` method
+4. Write down those test cases on the side note.
+
+## Task 4b
+1. Implement all of test cases you discovered 

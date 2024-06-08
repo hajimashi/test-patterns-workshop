@@ -1,31 +1,28 @@
 package pl.kraqa.library;
 
-public class Order {
-    Book book;
-    int amount;
-    int costOfOneItem;
-    int totalCost;
-    String nameOfClient;
-    String surnameOfClient;
-    String clientEmail;
-    String deliveryStreet;
-    String deliveryHomeNumber;
-    String deliveryPostalCode;
-    String deliveryCity;
-    boolean hasPayed;
+import pl.kraqa.library.user.User;
 
-    public Order(Book book, int amount, int costOfOneItem, int totalCost, String nameOfClient, String surnameOfClient, String clientEmail, String deliveryStreet, String deliveryHomeNumber, String deliveryPostalCode, String deliveryCity, boolean hasPayed) {
-        this.book = book;
-        this.amount = amount;
-        this.costOfOneItem = costOfOneItem;
-        this.totalCost = totalCost;
-        this.nameOfClient = nameOfClient;
-        this.surnameOfClient = surnameOfClient;
-        this.clientEmail = clientEmail;
-        this.deliveryStreet = deliveryStreet;
-        this.deliveryHomeNumber = deliveryHomeNumber;
-        this.deliveryPostalCode = deliveryPostalCode;
-        this.deliveryCity = deliveryCity;
-        this.hasPayed = hasPayed;
+import java.util.List;
+import java.util.Set;
+
+public class Order {
+    private static final int STANDARD_PRICE = 3;
+    Set<Book> books;
+    List<BookDiscount> discounts;
+    User user;
+
+    public Order(Set<Book> books, User user, List<BookDiscount> discounts) {
+        this.books = books;
+        this.user = user;
+        this.discounts = discounts;
+    }
+
+    public int calculatePrice() {
+        return (int) books.stream().mapToDouble(
+                book -> discounts.stream()
+                        .filter(bookDiscount -> bookDiscount.getBook().equals(book))
+                        .mapToDouble(BookDiscount::getPercentage)
+                        .reduce(0, Double::sum) * STANDARD_PRICE
+        ).reduce(0, Double::sum);
     }
 }
