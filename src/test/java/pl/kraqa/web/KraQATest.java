@@ -24,7 +24,7 @@ public class KraQATest extends WebDriverTest {
 
         ContactFormPage contactFormPage = new ContactFormPage(driver);
         contactFormPage.fillTheForm("Marcin", "zolna.marcin+workshop@gmail.com", "We are testing...", "This is a test message from workshops");
-        contactFormPage.submitForm();
+        //contactFormPage.submitForm();
 
         assertTrue(contactFormPage.isConfirmationMessageDisplayed());
     }
