@@ -19,13 +19,26 @@ public class KraQATest extends WebDriverTest {
 
     @Test
     public void testContactForm() {
+        //given
         driver.get("https://kraqa.pl");
         new HomePage(driver).selectContactTab();
 
-        ContactFormPage contactFormPage = new ContactFormPage(driver);
-        contactFormPage.fillTheForm("Marcin", "zolna.marcin+workshop@gmail.com", "We are testing...", "This is a test message from workshops");
-        //contactFormPage.submitForm();
+        //when
+        ContactFormPage contactFormPage = new ContactFormPage(driver)
+                .fillName("Marcin")
+                .fillEmail("wrong email")
+                .fillSubject("We are testing...")
+                .fillMessage("This is a test message from workshops")
+                .submitForm();
 
+        //then
+        assertFalse(contactFormPage.isConfirmationMessageDisplayed());
+
+        //when
+        contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com");
+        contactFormPage.submitForm();
+
+        //then
         assertTrue(contactFormPage.isConfirmationMessageDisplayed());
     }
 
