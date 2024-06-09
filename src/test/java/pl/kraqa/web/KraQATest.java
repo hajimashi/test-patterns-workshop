@@ -20,8 +20,8 @@ public class KraQATest extends WebDriverTest {
     @Test
     public void testContactForm() {
         //given
-        driver.get("https://kraqa.pl");
-        new HomePage(driver).selectContactTab();
+        driver.get("https://kraqa.pl/kontakt");
+        //new HomePage(driver).selectContactTab();
 
         //when
         ContactFormPage contactFormPage = new ContactFormPage(driver)
