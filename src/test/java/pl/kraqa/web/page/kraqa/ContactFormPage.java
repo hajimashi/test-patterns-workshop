@@ -3,10 +3,14 @@ package pl.kraqa.web.page.kraqa;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.LoadableComponent;
 
 import java.util.List;
 
-public class ContactFormPage {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class ContactFormPage extends LoadableComponent<ContactFormPage> {
+    private static final String URL = "https://kraqa.pl/kontakt/";
     private final WebDriver driver;
 
     private By nameInput = By.name("name");
@@ -50,5 +54,16 @@ public class ContactFormPage {
         List<WebElement> elements = driver.findElements(confirmationMessage);
 
         return !elements.isEmpty() && elements.get(0).isDisplayed();
+    }
+
+    @Override
+    protected void load() {
+        driver.get(URL);
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        String url = driver.getCurrentUrl();
+        assertEquals(url, URL, "Wrong Page: " + url);
     }
 }

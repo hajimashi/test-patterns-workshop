@@ -2,8 +2,12 @@ package pl.kraqa.web.page.kraqa;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.LoadableComponent;
 
-public class HomePage {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class HomePage extends LoadableComponent<HomePage> {
+    private static final String URL = "https://kraqa.pl/";
     private final WebDriver driver;
 
     private By menuContactTab = By.className("menu-item-4365");
@@ -19,5 +23,16 @@ public class HomePage {
 
     public void selectNewsTab() {
         driver.findElement(menuNewsTab).click();
+    }
+
+    @Override
+    protected void load() {
+        driver.get(URL);
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        String url = driver.getCurrentUrl();
+        assertEquals(url, URL, "Wrong Page: " + url);
     }
 }

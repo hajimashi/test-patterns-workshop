@@ -12,19 +12,15 @@ public class KraQATest extends WebDriverTest {
 
     @Test
     public void testHomePage() {
-        driver.get("https://kraqa.pl");
-        new HomePage(driver).selectNewsTab();
+        new HomePage(driver).get().selectNewsTab();
         assertTrue(new NewsPage(driver).isFbWidgetEnabled());
     }
 
     @Test
     public void testContactForm() {
-        //given
-        driver.get("https://kraqa.pl/kontakt");
-        //new HomePage(driver).selectContactTab();
-
         //when
         ContactFormPage contactFormPage = new ContactFormPage(driver)
+                .get()
                 .fillName("Marcin")
                 .fillEmail("wrong email")
                 .fillSubject("We are testing...")
