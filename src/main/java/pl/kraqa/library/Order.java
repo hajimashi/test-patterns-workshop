@@ -3,6 +3,7 @@ package pl.kraqa.library;
 import pl.kraqa.library.user.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class Order {
@@ -18,11 +19,11 @@ public class Order {
     }
 
     public int calculatePrice() {
-        return (int) books.stream().mapToDouble(
-                book -> discounts.stream()
+        return (int) Optional.ofNullable(books).orElse(Set.of()).stream().mapToDouble(
+                book -> (1 - Optional.ofNullable(discounts).orElse(List.of()).stream()
                         .filter(bookDiscount -> bookDiscount.getBook().equals(book))
                         .mapToDouble(BookDiscount::getPercentage)
-                        .reduce(0, Double::sum) * STANDARD_PRICE
+                        .reduce(0, Double::sum)) * STANDARD_PRICE
         ).reduce(0, Double::sum);
     }
 }

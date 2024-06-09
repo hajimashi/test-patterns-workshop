@@ -17,7 +17,7 @@ public class Address {
         this.city = city;
     }
 
-    public class Builder {
+    public static class Builder {
         private String postalCode;
         private String street;
         private String country;
