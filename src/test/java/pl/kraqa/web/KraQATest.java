@@ -35,8 +35,8 @@ public class KraQATest extends WebDriverTest {
         assertFalse(contactFormPage.isConfirmationMessageDisplayed());
 
         //when
-        contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com");
-        contactFormPage.submitForm();
+        contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com")
+                .submitForm();
 
         //then
         assertTrue(contactFormPage.isConfirmationMessageDisplayed());
