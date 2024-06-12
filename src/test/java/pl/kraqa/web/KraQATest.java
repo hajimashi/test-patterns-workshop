@@ -5,7 +5,7 @@ import pl.kraqa.web.page.kraqa.AnyPage;
 import pl.kraqa.web.page.kraqa.ContactFormPage;
 import pl.kraqa.web.page.kraqa.HomePage;
 import pl.kraqa.web.page.kraqa.NewsPage;
-import pl.kraqa.web.page.kraqa.component.MenuBarComponent.Page;
+import pl.kraqa.web.page.kraqa.component.MenuBarComponent.Tab;
 
 
 
@@ -48,10 +48,10 @@ public class KraQATest extends WebDriverTest {
         //given
         new HomePage(driver).get();
 
-        for (Page page : Page.values()) {
+        for (Tab tab : Tab.values()) {
             //when
             HomePage homePage = new HomePage(driver);
-            homePage.getMenu().selectPage(page);
+            homePage.getMenu().selectTab(tab);
 
             new AnyPage(driver).getMenu().selectHomeTab();
 

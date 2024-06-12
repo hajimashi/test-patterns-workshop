@@ -44,8 +44,8 @@ public class MenuBarComponent {
         root.findElement(dupqaTab).click();
     }
 
-    public void selectPage(Page page) {
-        switch (page) {
+    public void selectTab(Tab tab) {
+        switch (tab) {
             case KRAQA -> selectKraQATab();
             case QARANTANNA -> selectQArantannaTab();
             case SKLADQA -> selectSkladQATab();
@@ -57,7 +57,7 @@ public class MenuBarComponent {
         }
     }
 
-    public enum Page {
+    public enum Tab {
         HOME, KRAQA, SKLADQA, QARANTANNA, DUPQA, ABOUTUS, NEWS, CONTACT
     }
 }
