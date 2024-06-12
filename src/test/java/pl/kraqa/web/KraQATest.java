@@ -15,14 +15,14 @@ public class KraQATest extends WebDriverTest {
 
     @Test
     public void testHomePage() {
-        new HomePage(driver).getMenu().selectNewsTab();
+        new HomePage(driver).get().getMenu().selectNewsTab();
         assertTrue(new NewsPage(driver).isFbWidgetEnabled());
     }
 
     @Test
     public void testContactForm() {
         //given
-        new HomePage(driver).getMenu().selectContactTab();
+        new HomePage(driver).get().getMenu().selectContactTab();
 
         //when
         ContactFormPage contactFormPage = new ContactFormPage(driver)
@@ -37,7 +37,7 @@ public class KraQATest extends WebDriverTest {
         assertFalse(contactFormPage.isConfirmationMessageDisplayed());
 
         //when
-        //contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com").submitForm();
+        contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com").submitForm();
 
         //then
         assertTrue(contactFormPage.isConfirmationMessageDisplayed());

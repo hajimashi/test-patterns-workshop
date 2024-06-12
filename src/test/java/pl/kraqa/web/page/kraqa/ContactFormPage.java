@@ -2,17 +2,8 @@ package pl.kraqa.web.page.kraqa;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.LoadableComponent;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class ContactFormPage extends LoadableComponent<ContactFormPage> {
-    private static final String URL = "https://kraqa.pl/kontakt/";
-    private final WebDriver driver;
-
+public class ContactFormPage extends BasePage<ContactFormPage> {
     private By nameInput = By.name("name");
     private By emailInput = By.name("email");
     private By subjectInput = By.name("subject");
@@ -21,7 +12,7 @@ public class ContactFormPage extends LoadableComponent<ContactFormPage> {
     private By confirmationMessage = By.xpath("//*[contains(text(), 'Thanks for being with us')]");
 
     public ContactFormPage(WebDriver webDriver) {
-        this.driver = webDriver;
+        super("https://kraqa.pl/kontakt/", webDriver);
     }
 
     public ContactFormPage fillName(String name) {
@@ -51,19 +42,6 @@ public class ContactFormPage extends LoadableComponent<ContactFormPage> {
     }
 
     public boolean isConfirmationMessageDisplayed() {
-        List<WebElement> elements = driver.findElements(confirmationMessage);
-
-        return !elements.isEmpty() && elements.get(0).isDisplayed();
-    }
-
-    @Override
-    protected void load() {
-        driver.get(URL);
-    }
-
-    @Override
-    protected void isLoaded() throws Error {
-        String url = driver.getCurrentUrl();
-        assertEquals(url, URL, "Wrong Page: " + url);
+        return driver.findElement(confirmationMessage).isDisplayed();
     }
 }
