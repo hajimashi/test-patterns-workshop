@@ -3,26 +3,25 @@ package pl.kraqa.web.page.kraqa;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import pl.kraqa.web.page.kraqa.component.MenuBarComponent;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HomePage extends LoadableComponent<HomePage> {
     private static final String URL = "https://kraqa.pl/";
     private final WebDriver driver;
-
-    private By menuContactTab = By.className("menu-item-4365");
-    private By menuNewsTab = By.className("menu-item-4770");
+    private MenuBarComponent menu;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void selectContactTab() {
-        driver.findElement(menuContactTab).click();
-    }
+    public MenuBarComponent getMenu() {
+        if (menu == null) {
+            this.menu = new MenuBarComponent(driver.findElement(By.id("menu-1-5b6b9ad9")));
+        }
 
-    public void selectNewsTab() {
-        driver.findElement(menuNewsTab).click();
+        return menu;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class HomePage extends LoadableComponent<HomePage> {
     }
 
     @Override
-    protected void isLoaded() throws Error {
+    public void isLoaded() throws Error {
         String url = driver.getCurrentUrl();
         assertEquals(url, URL, "Wrong Page: " + url);
     }

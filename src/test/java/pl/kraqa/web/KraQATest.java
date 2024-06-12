@@ -1,9 +1,12 @@
 package pl.kraqa.web;
 
 import org.junit.jupiter.api.Test;
+import pl.kraqa.web.page.kraqa.AnyPage;
 import pl.kraqa.web.page.kraqa.ContactFormPage;
 import pl.kraqa.web.page.kraqa.HomePage;
 import pl.kraqa.web.page.kraqa.NewsPage;
+import pl.kraqa.web.page.kraqa.component.MenuBarComponent.Page;
+
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,14 +15,14 @@ public class KraQATest extends WebDriverTest {
 
     @Test
     public void testHomePage() {
-        new HomePage(driver).get().selectNewsTab();
+        new HomePage(driver).getMenu().selectNewsTab();
         assertTrue(new NewsPage(driver).isFbWidgetEnabled());
     }
 
     @Test
     public void testContactForm() {
         //given
-        new HomePage(driver).get().selectContactTab();
+        new HomePage(driver).getMenu().selectContactTab();
 
         //when
         ContactFormPage contactFormPage = new ContactFormPage(driver)
@@ -42,6 +45,18 @@ public class KraQATest extends WebDriverTest {
 
     @Test
     public void testHomePageIsAccessible() {
+        //given
+        new HomePage(driver).get();
 
+        for (Page page : Page.values()) {
+            //when
+            HomePage homePage = new HomePage(driver);
+            homePage.getMenu().selectPage(page);
+
+            new AnyPage(driver).getMenu().selectHomeTab();
+
+            //then
+            homePage.isLoaded();
+        }
     }
 }

@@ -20,7 +20,7 @@ public class WebDriverTest {
                 .withLogOutput(System.out)
                 .build();
         driver = new ChromeDriver(service);
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(3000));
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(10000));
     }
 
 
