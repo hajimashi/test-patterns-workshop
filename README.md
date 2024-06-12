@@ -39,3 +39,8 @@
 1. Checkout `task5` branch (`git checkout task5`)
 2. Open `pl.kraqa.web.KraQATest` class
 3. Implement test checking that form will not accept invalid emails
+
+## Task 6
+1. Checkout `task6` branch (`git checkout task6`)
+2. Open `pl.kraqa.web.KraQATest` class
+3. Implement test checking that there is a link on each kraqa.pl page that is redirecting to the home page.

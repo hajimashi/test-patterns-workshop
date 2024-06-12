@@ -18,9 +18,12 @@ public class KraQATest extends WebDriverTest {
 
     @Test
     public void testContactForm() {
+        //given
+        new HomePage(driver).get().selectContactTab();
+
         //when
         ContactFormPage contactFormPage = new ContactFormPage(driver)
-                .get()
+                .get()                                                  //will not reload when already on the page
                 .fillName("Marcin")
                 .fillEmail("wrong email")
                 .fillSubject("We are testing...")
@@ -31,11 +34,14 @@ public class KraQATest extends WebDriverTest {
         assertFalse(contactFormPage.isConfirmationMessageDisplayed());
 
         //when
-        contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com")
-                .submitForm();
+        //contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com").submitForm();
 
         //then
         assertTrue(contactFormPage.isConfirmationMessageDisplayed());
     }
 
+    @Test
+    public void testHomePageIsAccessible() {
+
+    }
 }
