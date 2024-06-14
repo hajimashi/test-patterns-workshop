@@ -71,15 +71,28 @@ public class Library {
                 .anyMatch(copy -> copy.getStatus() == Status.AVAILABLE);
     }
 
+    public void borrow(Book book) {
+        if (isAvailable(book)) {
+            copies.get(book.getISBN()).stream()
+                    .filter(copy -> copy.getStatus().equals(Status.AVAILABLE))
+                    .findFirst()
+                    .orElseThrow()
+                    .setStatus(Status.BORROWED);
+        }
+    }
+
     public void createWaitlist(Waitlist waitlist) {
         this.waitlists.add(waitlist);
     }
 
-    public void returnBook(Copy copy) {
-        this.copies.get(copy.getISBN()).stream().findAny().get().setStatus(Status.AVAILABLE);
+    public void returnBook(Book book) {
+        this.copies.get(book.getISBN()).stream()
+                .filter(copy -> copy.getStatus().equals(Status.BORROWED))
+                .findFirst().get()
+                .setStatus(Status.AVAILABLE);
 
         waitlists.stream()
-                .filter(waitlist -> waitlist.getBook().getISBN().equals(copy.getISBN()))
+                .filter(waitlist -> waitlist.getBook().getISBN().equals(book.getISBN()))
                 .forEach(Waitlist::onBookReturned);
     }
 }
