@@ -44,7 +44,7 @@ class OrderTest {
     public void testOrder(Set<Book> books, List<BookDiscount> discountList, int expected) {
         //given
         Address address = new Address.Builder().createAddress();
-        User user = new User("Jan", "Kowalski", address);
+        User user = new User("Jan", "Kowalski", address, null);
         Order order = new Order(books, user, discountList);
 
         //when

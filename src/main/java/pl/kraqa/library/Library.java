@@ -12,6 +12,8 @@ public class Library {
 
     private HashMap<String, List<Copy>> copies = new HashMap<>();
 
+    private List<Waitlist> waitlists = new ArrayList<>();
+
     public void addBook(Book book) {
         books.put(book.getISBN(), book);
 
@@ -67,5 +69,17 @@ public class Library {
 
         return copies.get(book.getISBN()).stream()
                 .anyMatch(copy -> copy.getStatus() == Status.AVAILABLE);
+    }
+
+    public void createWaitlist(Waitlist waitlist) {
+        this.waitlists.add(waitlist);
+    }
+
+    public void returnBook(Copy copy) {
+        this.copies.get(copy.getISBN()).stream().findAny().get().setStatus(Status.AVAILABLE);
+
+        waitlists.stream()
+                .filter(waitlist -> waitlist.getBook().getISBN().equals(copy.getISBN()))
+                .forEach(Waitlist::onBookReturned);
     }
 }
