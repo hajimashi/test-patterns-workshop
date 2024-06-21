@@ -1,6 +1,7 @@
 package pl.kraqa.web.page.kraqa.component;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class MenuBarComponent {
@@ -55,6 +56,10 @@ public class MenuBarComponent {
             case DUPQA -> selectDupQATab();
             case HOME -> selectHomeTab();
         }
+    }
+
+    public static LazyElement<MenuBarComponent> lazyLoad(WebDriver driver) {
+        return new LazyElement<>(() -> new MenuBarComponent(driver.findElement(By.id("menu-1-5b6b9ad9"))));
     }
 
     public enum Tab {

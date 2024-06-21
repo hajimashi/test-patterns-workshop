@@ -1,6 +1,5 @@
 package pl.kraqa.web.page.kraqa;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import pl.kraqa.web.page.kraqa.component.LazyElement;
@@ -15,7 +14,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        this.menu = new LazyElement<>(() -> new MenuBarComponent(driver.findElement(By.id("menu-1-5b6b9ad9"))));
+        this.menu = MenuBarComponent.lazyLoad(driver);
     }
 
     public MenuBarComponent getMenu() {
