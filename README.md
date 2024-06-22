@@ -44,3 +44,13 @@
 1. Checkout `task6` branch (`git checkout task6`)
 2. Open `pl.kraqa.web.KraQATest` class
 3. Implement test checking that there is a link on each kraqa.pl page that is redirecting to the home page.
+
+## Task 7
+1. Checkout `task7` branch (`git checkout task7`)
+2. Open `pl.kraqa.library.Library`
+3. Create an unit test for `returnBook` method not modifying `build.gradle` file 
+
+## Task 8
+1. Checkout `task8` branch (`git checkout task8`)
+2. Open `pl.kraqa.web.KraQATest`
+3. Extract scenario from the test to the separate layer
