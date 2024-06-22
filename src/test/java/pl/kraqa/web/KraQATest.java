@@ -1,8 +1,9 @@
 package pl.kraqa.web;
 
 import org.junit.jupiter.api.Test;
+import pl.kraqa.web.controller.PageController;
+import pl.kraqa.web.fixture.Message;
 import pl.kraqa.web.page.kraqa.AnyPage;
-import pl.kraqa.web.page.kraqa.ContactFormPage;
 import pl.kraqa.web.page.kraqa.HomePage;
 import pl.kraqa.web.page.kraqa.NewsPage;
 import pl.kraqa.web.page.kraqa.component.MenuBarComponent.Tab;
@@ -21,26 +22,12 @@ public class KraQATest extends WebDriverTest {
 
     @Test
     public void testContactForm() {
-        //given
-        new HomePage(driver).get().getMenu().selectContactTab();
-
-        //when
-        ContactFormPage contactFormPage = new ContactFormPage(driver)
-                .get()                                                  //will not reload when already on the page
-                .fillName("Marcin")
-                .fillEmail("wrong email")
-                .fillSubject("We are testing...")
-                .fillMessage("This is a test message from workshops")
-                .submitForm();
-
-        //then
-        assertFalse(contactFormPage.isConfirmationMessageDisplayed());
-
-        //when
-        contactFormPage.fillEmail("zolna.marcin+workshop@gmail.com").submitForm();
-
-        //then
-        assertTrue(contactFormPage.isConfirmationMessageDisplayed());
+        new PageController(driver)
+                .open_home_page()
+                .send_contact_form_with_message(Message.nextWorkshopQuestion())
+                .check_message_sent()
+                .send_contact_form_with_message(Message.wrongEmail())
+                .ensure_message_not_sent();
     }
 
     @Test
